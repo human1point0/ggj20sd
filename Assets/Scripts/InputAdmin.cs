@@ -16,7 +16,6 @@ public class InputAdmin : MonoBehaviour
     
     private void Awake()
     {
-        print("Awakened");
         controls = new RepairActions();
     }
 
@@ -58,6 +57,11 @@ public class InputAdmin : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player");
     }
 
+    public RepairActions getRepairActions()
+    {
+        return controls;
+    }
+
     public void setGameAdminReference(GameAdmin admin)
     {
         _admin = admin;
@@ -66,6 +70,28 @@ public class InputAdmin : MonoBehaviour
     public void setPlayerInputReference(PlayerInput playerInput)
     {
         _playerInput = playerInput;
+    }
+
+    public void leftAxisHandler(Vector2 vec2)
+    {
+        ping();
+    }
+
+    public void rightAxisHandler(Vector2 vec2)
+    {
+        ping();
+    }
+
+    public void Update()
+    {
+        //print(controls.Player.MoveLeftCharacter.ReadValue<Vector2>().ToString());
+        Vector2 vecLeft = controls.Player.MoveLeftCharacter.ReadValue<Vector2>();
+        //Vector2 vecRight = controls.Player.MoveRightCharacter.ReadValue<Vector2>();
+        /*if(_admin.getState() != GameAdmin.GameState.InGame)
+        {
+            
+        }*/
+
     }
 
     public void ping()
