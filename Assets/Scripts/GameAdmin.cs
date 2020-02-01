@@ -8,7 +8,8 @@ public class GameAdmin : MonoBehaviour
 {
     public GameObject inputAdminContainer;
     private InputAdmin _inputAdmin;
-   
+    public Transform ScrollWorldObject;
+    public float ScrollSpeed = 1;
     public enum GameState
     {
         StartMenu,
@@ -34,14 +35,32 @@ public class GameAdmin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _inputAdmin.SetUIMode();
-
+        _inputAdmin.SetGameplayMode();
+        _state = GameState.InGame;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (_state)
+        {
+            case GameState.InGame:
+                DoGameUpdate();
+                break;
+        }        
+    }
+
+    void DoGameUpdate()
+    {
+        if (ScrollWorldObject)
+        {
+            var speed = Time.deltaTime * ScrollSpeed;
+            ScrollWorldObject.position += Vector3.back * speed;
+        }
+        else
+        {
+            Debug.Log("Connect scroll object");
+        }
     }
 
     public void ping()
