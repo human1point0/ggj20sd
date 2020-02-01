@@ -9,6 +9,11 @@ public class InputAdmin : MonoBehaviour
     GameAdmin _admin = null;
     PlayerInput _playerInput = null;
 
+    [SerializeField]
+    private PlayerController _left;
+    [SerializeField]
+    private PlayerController _right;
+    
     private void Awake()
     {
         print("Awakened");
@@ -28,11 +33,15 @@ public class InputAdmin : MonoBehaviour
     private void EnablePlayer()
     {
         controls.Player.Enable();
+        _left.SetRepairActions(controls);
+        _right.SetRepairActions(controls);
     }
 
     private void DisablePlayer()
     {
         controls.Player.Disable();
+        _left.SetRepairActions(null);
+        _right.SetRepairActions(null);
     }
 
     public void SetUIMode()
@@ -63,5 +72,7 @@ public class InputAdmin : MonoBehaviour
     {
         print("ping" + this.GetType().Name);
     }
+    
+    
     //Vector2 vec = controls.Player.MoveLeftCharacter.ReadValue<Vector2>();
 }
