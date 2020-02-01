@@ -32,15 +32,15 @@ public class InputAdmin : MonoBehaviour
     private void EnablePlayer()
     {
         controls.Player.Enable();
-        _left.SetRepairActions(controls);
-        _right.SetRepairActions(controls);
+        _left?.SetRepairActions(controls);
+        _right?.SetRepairActions(controls);
     }
 
     private void DisablePlayer()
     {
         controls.Player.Disable();
-        _left.SetRepairActions(null);
-        _right.SetRepairActions(null);
+        _left?.SetRepairActions(null);
+        _right?.SetRepairActions(null);
     }
 
     public void SetUIMode()
@@ -84,21 +84,10 @@ public class InputAdmin : MonoBehaviour
 
     public void Update()
     {
-        //print(controls.Player.MoveLeftCharacter.ReadValue<Vector2>().ToString());
-        Vector2 vecLeft = controls.Player.MoveLeftCharacter.ReadValue<Vector2>();
-        //Vector2 vecRight = controls.Player.MoveRightCharacter.ReadValue<Vector2>();
-        /*if(_admin.getState() != GameAdmin.GameState.InGame)
-        {
-            
-        }*/
-
     }
 
     public void ping()
     {
         print("ping" + this.GetType().Name);
     }
-    
-    
-    //Vector2 vec = controls.Player.MoveLeftCharacter.ReadValue<Vector2>();
 }

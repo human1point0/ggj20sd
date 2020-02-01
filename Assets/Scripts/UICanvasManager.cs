@@ -1,84 +1,43 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UICanvasManager : MonoBehaviour
 {
     private Canvas CanvasObject; // Assign in inspector
     private RepairActions _actions;
+    private GameAdmin _admin;
+    public Button[] Buttons;
     private void Awake()
     {
         CanvasObject = GetComponent<Canvas>();
+        HideMenu();
     }
 
     public void setRepairActionsRef(RepairActions actions)
     {
         _actions = actions;
-        _actions.UI.Navigate.started += ctx => {
-            OnNavigation(_actions.UI.Navigate.ReadValue<Vector2>());
-        };
     }
-
-    private void OnNavigation(Vector2 vec)
+    public void setGameAdmin(GameAdmin admin)
     {
-        if(vec.x > 0) //going right
-        {
-            LeftActionable();
-            return;
-        } else if (vec.x < 0) //going left
-        {
-            RightActionable();
-            return;
-        }
-
-        if (vec.y > 0) //going up
-        {
-            UpActionable();
-        } else //going down
-        {
-            DownActionable();
-        }
-    }
-
-    private void LeftActionable()
-    {
-        print("UP");
-    }
-    private void RightActionable()
-    {
-        print("DOWN");
-    }
-
-    private void UpActionable() {
-        print("UP");
-    }
-    private void DownActionable()
-    {
-        print("DOWN");
+        _admin = admin;
     }
 
 
     public void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
     {
         CanvasObject.enabled = true;
+        Buttons[0].Select();
     }
 
-    public void HideMenu()
-    {
+    public void HideMenu() { 
         CanvasObject.enabled = false;
     }
-
-
-    // Start is called before the first frame update
-    void Start()
+    public void ping()
     {
-        HideMenu();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        print("ping");
     }
 }

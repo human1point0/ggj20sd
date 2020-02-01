@@ -8,9 +8,14 @@ using UnityEngine.UI;
 public class GameAdmin : MonoBehaviour
 {
     public GameObject inputAdminContainer;
+    public GameObject pauseMenuContainer;
+    public GameObject startWinLoseMenuContainer;
     private InputAdmin _inputAdmin;
     public Transform ScrollWorldObject;
     public float ScrollSpeed = 1;
+
+    private UICanvasManager _pauseUI;
+    private UICanvasManager _swlUI;
 
     [SerializeField] private PlayerController _left;
     [SerializeField] private PlayerController _right; 
@@ -43,6 +48,9 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin = inputAdminContainer.GetComponent(typeof(InputAdmin)) as InputAdmin;
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
+
+        _pauseUI = pauseMenuContainer.GetComponent(typeof(UICanvasManager)) as UICanvasManager;
+        _pauseUI.setGameAdmin(this);
     }
     // Start is called before the first frame update
     void Start()
