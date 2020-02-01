@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 //admins the game state
 public class GameAdmin : MonoBehaviour
@@ -10,6 +11,17 @@ public class GameAdmin : MonoBehaviour
     private InputAdmin _inputAdmin;
     public Transform ScrollWorldObject;
     public float ScrollSpeed = 1;
+
+    [SerializeField] private Transform _left;
+    [SerializeField] private Transform _right;
+
+    [Range(1, 10)]    
+    [SerializeField] private float _scoreDistanceMultiplier = 5;
+
+    [SerializeField] private float _scoreRateMultiplier = 1;
+    private float _rawScore = 0;
+
+    public Text scoreText;
     public enum GameState
     {
         StartMenu,
@@ -60,6 +72,25 @@ public class GameAdmin : MonoBehaviour
         else
         {
             Debug.Log("Connect scroll object");
+        }
+
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        if (_left && _right)
+        {
+            var diff = _scoreDistanceMultiplier - Mathf.Abs(_left.position.z - _right.position.z);
+            if (diff > 0)
+            {
+                _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
+            } 
+            scoreText.text = $"Score: {_rawScore:0000}";
+        }
+        else
+        {
+            Debug.Log("Players not connected to GameAdmin");
         }
     }
 
