@@ -12,8 +12,8 @@ public class GameAdmin : MonoBehaviour
     public Transform ScrollWorldObject;
     public float ScrollSpeed = 1;
 
-    [SerializeField] private Transform _left;
-    [SerializeField] private Transform _right;
+    [SerializeField] private PlayerController _left;
+    [SerializeField] private PlayerController _right; 
 
     [Range(1, 10)]    
     [SerializeField] private float _scoreDistanceMultiplier = 5;
@@ -62,8 +62,31 @@ public class GameAdmin : MonoBehaviour
         }        
     }
 
+    bool CheckWin()
+    {
+        if (_left.Win && _right.Win)
+        {
+            _state = GameState.Win;
+            Debug.Log("Win");
+        }
+        return _state == GameState.Win;
+    }
+
+    bool CheckLose()
+    {
+        if (_left.Lost || _right.Lost)
+        {
+            _state = GameState.Lose;
+            Debug.Log("Lost");
+        }
+        return _state == GameState.Lose;
+    }
     void DoGameUpdate()
     {
+        if (CheckWin() || CheckLose())
+        {
+            return;
+        }
         if (ScrollWorldObject)
         {
             var speed = Time.deltaTime * ScrollSpeed;
@@ -73,7 +96,6 @@ public class GameAdmin : MonoBehaviour
         {
             Debug.Log("Connect scroll object");
         }
-
         UpdateScore();
     }
 
@@ -81,7 +103,8 @@ public class GameAdmin : MonoBehaviour
     {
         if (_left && _right)
         {
-            var diff = _scoreDistanceMultiplier - Mathf.Abs(_left.position.z - _right.position.z);
+            var diff = _scoreDistanceMultiplier - 
+                       Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
             if (diff > 0)
             {
                 _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
