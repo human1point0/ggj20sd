@@ -11,6 +11,9 @@
 # Visual Studio cache directory
 .vs/
 
+#Intellij
+.idea/
+
 # Gradle cache directory
 .gradle/
 
@@ -51,3 +54,4 @@ Assets/Scenes/EddiesScene.unity.meta
 
 # Crashlytics generated file
 crashlytics-build.properties
+
