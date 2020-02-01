@@ -40,6 +40,11 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
+#things to ignore
+Assets/Scenes/EddiesScene.unity
+Assets/Scenes/EddiesScene.unity.meta
+
+
 # Builds
 *.apk
 *.unitypackage
