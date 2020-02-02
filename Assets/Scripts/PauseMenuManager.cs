@@ -5,6 +5,11 @@ using UnityEditor;
 
 public class PauseMenuManager : UICanvasManager
 {
+    public void RestartCallback()
+    {
+        base._admin.OnReloadPressed();
+    }
+
 
     public void ResumeCallback()
     {
