@@ -6,6 +6,8 @@ using UnityEngine.PlayerLoop;
 public class PlayerController : MonoBehaviour
 {
     public GameObject warningObject;
+
+    [SerializeField] private Vector3 _warningOffset = new Vector3(0, 0.5f, 0.5f);
     private Camera _camera;
     private bool _lost = false;
     public bool Lost => _lost;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
+        warningObject.transform.parent = null;
     }
 
     private void OnEnable()
@@ -46,8 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (warningObject && warningObject.activeSelf)
         {
-            warningObject.transform.position = transform.position + Vector3.up * 0.5f + Vector3.forward * 0.3f;
-            // warningObject.transform.LookAt(_camera.transform.position);
+            warningObject.transform.position = transform.position + _warningOffset;
         }
     }
 
