@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             if (speed > 1 && !_moveSoundSource.isPlaying)
             {
+                Debug.Log(_moveSoundSource.isPlaying);
                 _moveSoundSource.Play();
             }
             else

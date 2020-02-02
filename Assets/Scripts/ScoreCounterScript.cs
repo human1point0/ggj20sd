@@ -22,7 +22,7 @@ public class ScoreCounterScript : MonoBehaviour
     {
         var old = score;
         score = Convert.ToInt32(s);
-        if (old != score)
+        if (old / 10  != score / 10)
         {
             _audio.Play();
         }
