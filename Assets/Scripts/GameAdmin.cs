@@ -12,6 +12,9 @@ public class GameAdmin : MonoBehaviour
     public GameObject pauseMenuContainer;
     public GameObject startWinLoseMenuContainer;
     public GameObject scoreBarContainer;
+    public GameObject cutsceneContainer;
+    public Camera playerCamera;
+
     private InputAdmin _inputAdmin;
     private ScoreCounterScript scs;
     public Transform ScrollWorldObject;
@@ -109,6 +112,14 @@ public class GameAdmin : MonoBehaviour
         _pauseUI.HideMenu();
     }
 
+    IEnumerator StartCutscene()
+    {
+
+        cutsceneContainer.transform.GetChild(0).gameObject.SetActive(true);
+        cutsceneContainer.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2.0f);
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -127,6 +138,10 @@ public class GameAdmin : MonoBehaviour
         {
             _state = GameState.Win;
             Debug.Log("Win");
+            if (cutsceneContainer != null)
+            {
+                StartCoroutine("StartCutscene");
+            }
         }
         return _state == GameState.Win;
     }
