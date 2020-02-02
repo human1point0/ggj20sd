@@ -1273,6 +1273,21 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ff886002-3de8-4c0d-8a81-cde95deaf457
     m_ActionName: UI/PauseButton[/XInputControllerWindows/start,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 400541212}
+        m_MethodName: OnReloadPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 462240a4-b427-4704-ae5f-de5c3f15ad67
+    m_ActionName: Player/Quick Restart[/Keyboard/r,/DualShock4GamepadHID/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1341,8 +1356,8 @@ Camera:
   m_GameObject: {fileID: 225542101}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2479,7 +2494,6 @@ MonoBehaviour:
   startWinLoseMenuContainer: {fileID: 0}
   scoreBarContainer: {fileID: 1066783820}
   cutsceneContainer: {fileID: 1628963990}
-  playerCamera: {fileID: 225542103}
   ScrollWorldObject: {fileID: 920608991}
   ScrollSpeed: 1.5
   _left: {fileID: 1754035054}
