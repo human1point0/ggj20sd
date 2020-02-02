@@ -1,8 +1,12 @@
 ﻿using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject warningObject;
+    private Camera _camera;
     private bool _lost = false;
     public bool Lost => _lost;
     
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     private void Awake()
     {
+        _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -37,6 +42,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Controls set {controls}");
     }
 
+    void Update()
+    {
+        if (warningObject && warningObject.activeSelf)
+        {
+            warningObject.transform.position = transform.position + Vector3.up * 0.5f + Vector3.forward * 0.3f;
+            // warningObject.transform.LookAt(_camera.transform.position);
+        }
+    }
 
     void FixedUpdate()
     {
@@ -53,6 +66,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 dir = new Vector3(move.x, 0, move.y) * ForceMultiplier;
         _rigidbody.AddForce( dir , ForceMode.Acceleration);
+        _rigidbody.AddTorque( dir , ForceMode.Acceleration);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +80,10 @@ public class PlayerController : MonoBehaviour
         {
             _win = true;
         }
+        else if (other.tag == "Warning")
+        {
+            StartWarning();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -73,5 +91,20 @@ public class PlayerController : MonoBehaviour
         {
             _win = false;
         }
+        else if (other.tag == "Warning")
+        {
+            EndWarning();
+        }
+    }
+
+    void StartWarning()
+    {
+        warningObject?.SetActive(true);
+        Debug.Log("Danger");
+    }
+    void EndWarning()
+    {
+        warningObject?.SetActive(false);
+        Debug.Log("Danger Clear");
     }
 }

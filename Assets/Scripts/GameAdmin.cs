@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //admins the game state
@@ -26,6 +27,14 @@ public class GameAdmin : MonoBehaviour
     [SerializeField] private float _scoreDistanceMultiplier = 5;
 
     [SerializeField] private float _scoreRateMultiplier = 1;
+
+    [Range(0, 1)]
+    [SerializeField] private float _maxPairingDistance = 0.3f;
+    
+    [Range(1, 5)]
+    [SerializeField] private float _pairingTime = 1;
+
+    private float _pairingScore = 0;
     private float _rawScore = 0;
 
     public Text scoreText;
@@ -68,6 +77,8 @@ public class GameAdmin : MonoBehaviour
     {
         _inputAdmin.SetGameplayMode();
         _state = GameState.InGame;
+        _rawScore = 0;
+        _pairingScore = 0;
         /*_inputAdmin.SetUIMode();
         _pauseUI.ShowMenu();*/
     }
@@ -80,7 +91,7 @@ public class GameAdmin : MonoBehaviour
             _state = GameState.PauseMenu;
             _inputAdmin.SetUIMode();
             Time.timeScale = 0.0f;
-            _pauseUI.ShowMenu();
+            _pauseUI.ShowMenu(_inputAdmin.getRepairActions());
             return;
         }
        /* } else
@@ -91,8 +102,8 @@ public class GameAdmin : MonoBehaviour
 
     public void OnResumeGameplay()
     {
-        _state = GameState.InGame;
         print("unpause");
+        _state = GameState.InGame;
         Time.timeScale = 1.0f;
         _inputAdmin.SetGameplayMode();
         _pauseUI.HideMenu();
@@ -149,22 +160,43 @@ public class GameAdmin : MonoBehaviour
 
     void UpdateScore()
     {
-        if (_left && _right)
-        {
-            var diff = _scoreDistanceMultiplier - 
-                       Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
-            if (diff > 0)
-            {
-                _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
-            }
+        var distance = Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
+        var diff = _scoreDistanceMultiplier - distance;
 
+        if (diff > 0)
+        {
+            _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
+        }
+
+        if (distance <= _maxPairingDistance)
+        {
+            _pairingScore += Time.deltaTime;
+            if (_pairingScore > _pairingTime)
+            {
+                // _left.LaunchPairing();
+                // _right.LaunchPairing();
+                _pairingScore = 0;
+            }
             scs?.SetScore(_rawScore);
-            scoreText.text = $"Score: {_rawScore:0000}";
         }
         else
         {
-            Debug.Log("Players not connected to GameAdmin");
+            _pairingScore = 0;
         }
+
+        //Debug.Log($"Score: {_rawScore:0000}");
+    }
+
+    public void OnReloadPressed()
+    {
+        Debug.Log("Reload");
+        // todo: Start Wait Coroutine
+        Reload();
+    }
+    void Reload()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ping()

@@ -38,7 +38,7 @@ public class UICanvasManager : MonoBehaviour
     }
 
 
-    public virtual void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
+    public virtual void ShowMenu(RepairActions raActions)
     {
         //CanvasObject.enabled = true;
         c.SetActive(true);

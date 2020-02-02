@@ -49,6 +49,14 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quick Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""462240a4-b427-4704-ae5f-de5c3f15ad67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -258,6 +266,28 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Pause Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8992c9ca-ba48-4048-b59f-3e098bf94ad8"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Quick Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06ce67ed-2718-4245-a79f-6d66a5310df5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Quick Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -866,6 +896,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_MoveRightCharacter = m_Player.FindAction("Move Right Character", throwIfNotFound: true);
         m_Player_PauseGame = m_Player.FindAction("Pause Game", throwIfNotFound: true);
+        m_Player_QuickRestart = m_Player.FindAction("Quick Restart", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -933,6 +964,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_MoveRightCharacter;
     private readonly InputAction m_Player_PauseGame;
+    private readonly InputAction m_Player_QuickRestart;
     public struct PlayerActions
     {
         private @RepairActions m_Wrapper;
@@ -941,6 +973,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @MoveRightCharacter => m_Wrapper.m_Player_MoveRightCharacter;
         public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
+        public InputAction @QuickRestart => m_Wrapper.m_Player_QuickRestart;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -962,6 +995,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @PauseGame.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
+                @QuickRestart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickRestart;
+                @QuickRestart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickRestart;
+                @QuickRestart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuickRestart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -978,6 +1014,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @QuickRestart.started += instance.OnQuickRestart;
+                @QuickRestart.performed += instance.OnQuickRestart;
+                @QuickRestart.canceled += instance.OnQuickRestart;
             }
         }
     }
@@ -1154,6 +1193,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnMoveRightCharacter(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnQuickRestart(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
