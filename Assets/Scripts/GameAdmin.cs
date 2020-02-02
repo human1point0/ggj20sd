@@ -56,7 +56,8 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin = inputAdminContainer.GetComponent(typeof(InputAdmin)) as InputAdmin;
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
-        setupPauseUI();      
+        setupPauseUI();
+      
     }
 
     private void setupPauseUI()
