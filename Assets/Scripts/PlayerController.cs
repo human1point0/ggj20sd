@@ -1,8 +1,11 @@
 ﻿using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject pairingLauncher;
+    
     private bool _lost = false;
     public bool Lost => _lost;
     
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 dir = new Vector3(move.x, 0, move.y) * ForceMultiplier;
         _rigidbody.AddForce( dir , ForceMode.Acceleration);
+        _rigidbody.AddTorque( dir , ForceMode.Acceleration);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,5 +77,12 @@ public class PlayerController : MonoBehaviour
         {
             _win = false;
         }
+    }
+
+    public void LaunchPairing()
+    {
+        var go = Instantiate(pairingLauncher);
+        go.transform.position = transform.position;
+        
     }
 }

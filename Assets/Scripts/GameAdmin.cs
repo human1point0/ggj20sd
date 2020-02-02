@@ -19,6 +19,14 @@ public class GameAdmin : MonoBehaviour
     [SerializeField] private float _scoreDistanceMultiplier = 5;
 
     [SerializeField] private float _scoreRateMultiplier = 1;
+
+    [Range(0, 1)]
+    [SerializeField] private float _maxPairingDistance = 0.3f;
+    
+    [Range(1, 5)]
+    [SerializeField] private float _pairingTime = 1;
+
+    private float _pairingScore = 0;
     private float _rawScore = 0;
 
     public Text scoreText;
@@ -49,6 +57,8 @@ public class GameAdmin : MonoBehaviour
     {
         _inputAdmin.SetGameplayMode();
         _state = GameState.InGame;
+        _rawScore = 0;
+        _pairingScore = 0;
     }
 
     // Update is called once per frame
@@ -103,12 +113,29 @@ public class GameAdmin : MonoBehaviour
     {
         if (_left && _right)
         {
-            var diff = _scoreDistanceMultiplier - 
-                       Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
+            var distance = Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
+            var diff = _scoreDistanceMultiplier - distance;
+
             if (diff > 0)
             {
                 _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
-            } 
+            }
+
+            if (distance <= _maxPairingDistance)
+            {
+                _pairingScore += Time.deltaTime;
+                if (_pairingScore > _pairingTime)
+                {
+                    _left.LaunchPairing();
+                    _right.LaunchPairing();
+                    Debug.Log("==== PAIRING ===");
+                    _pairingScore = 0;
+                }
+            }
+            else
+            {
+                _pairingScore = 0;
+            }
             scoreText.text = $"Score: {_rawScore:0000}";
         }
         else
