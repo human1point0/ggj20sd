@@ -108,11 +108,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "WinTrigger")
-        {
-            _win = false;
-        }
-        else if (other.tag == "Warning")
+        if (other.tag == "Warning")
         {
             EndWarning();
         }

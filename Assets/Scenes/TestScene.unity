@@ -2526,6 +2526,7 @@ MonoBehaviour:
   pauseMenuContainer: {fileID: 1290647084}
   startWinLoseMenuContainer: {fileID: 0}
   scoreBarContainer: {fileID: 1825933523}
+  cutsceneContainer: {fileID: 0}
   ScrollWorldObject: {fileID: 1133317802}
   ScrollSpeed: 1
   _left: {fileID: 222432366}
@@ -2687,6 +2688,16 @@ PrefabInstance:
     - target: {fileID: 2422860036489291318, guid: 860d7e64d591e014bbd27910bb74807b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017875811668405401, guid: 860d7e64d591e014bbd27910bb74807b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017875811668405401, guid: 860d7e64d591e014bbd27910bb74807b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
