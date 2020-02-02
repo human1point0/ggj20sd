@@ -48,7 +48,8 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin = inputAdminContainer.GetComponent(typeof(InputAdmin)) as InputAdmin;
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
-        setupPauseUI();      
+        setupPauseUI();
+      
     }
 
     private void setupPauseUI()
@@ -146,7 +147,7 @@ public class GameAdmin : MonoBehaviour
 
     void UpdateScore()
     {
-        /*if (_left && _right)
+        if (_left && _right)
         {
             var diff = _scoreDistanceMultiplier - 
                        Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
@@ -159,7 +160,7 @@ public class GameAdmin : MonoBehaviour
         else
         {
             Debug.Log("Players not connected to GameAdmin");
-        }*/
+        }
     }
 
     public void ping()
