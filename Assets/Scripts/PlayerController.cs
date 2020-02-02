@@ -55,16 +55,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var speed = _rigidbody.velocity.magnitude;
-        if (speed > 1 && !_moveSoundSource.isPlaying)
+        if (_moveSoundSource != null)
         {
-            _moveSoundSource.Play();
-        }
-        else
-        {
-            _moveSoundSource.Pause();
-        }
+            if (speed > 1 && !_moveSoundSource.isPlaying)
+            {
+                _moveSoundSource.Play();
+            }
+            else
+            {
+                _moveSoundSource.Pause();
+            }
 
-        _moveSoundSource.volume = Mathf.Clamp01(speed / _maxSoundSpeed);
+            _moveSoundSource.volume = Mathf.Clamp01(speed / _maxSoundSpeed);
+        }
         if (warningObject && warningObject.activeSelf)
         {
             warningObject.transform.position = transform.position + _warningOffset;
