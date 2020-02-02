@@ -2,50 +2,28 @@ fileFormatVersion: 2
 guid: 9b6b9f99c16ae81498e628c9a0232ba4
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: 8457577657547012164
-    second: Armature.002|CubeAction
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackBunnyBody
+    second: {fileID: 2100000, guid: e5098ed800ace8c41b424a5fb6b08ad8, type: 2}
   - first:
-      74: 6058349916330334021
-    second: Armature.002|EarFlapping
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackBunnyFace
+    second: {fileID: 2100000, guid: 46911ab92bfe9cc4c82dc34967936e7e, type: 2}
   - first:
-      74: -1570652607641346953
-    second: Armature.002|EarFlapping.002
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nose
+    second: {fileID: 2100000, guid: ceb4b4f6d72b7094ba38b89eeb2ee98c, type: 2}
   - first:
-      74: 703147530413583541
-    second: Armature.002|EarSquish
-  - first:
-      74: -7300951586274910733
-    second: Armature.002|EarSquish.001
-  - first:
-      74: 3978093428327316351
-    second: Armature.002|SphereAction.001
-  - first:
-      74: -2430176387625953387
-    second: Armature.002|SphereAction.002
-  - first:
-      74: -5731333595869286421
-    second: Armature.002|SphereAction.003
-  - first:
-      74: 6529371360917502667
-    second: Armature.002|SphereAction.004
-  - first:
-      74: -8583642043978082035
-    second: Armature.002|SphereAction.005
-  - first:
-      74: -3311436981118427392
-    second: Armature.002|SphereAction.009
-  - first:
-      74: 8555030105218736708
-    second: Armature.002|SphereAction.010
-  - first:
-      74: 2846823225198866439
-    second: Armature.002|SphereAction.011
-  - first:
-      74: -6206867985946676785
-    second: Armature.002|SphereAction.012
-  externalObjects: {}
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teeth
+    second: {fileID: 2100000, guid: 583d212d025572147b9e310704e54122, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
