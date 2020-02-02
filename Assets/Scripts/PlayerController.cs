@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject warningObject;
 
+    [SerializeField] private AudioClip _warningSound;
+    [SerializeField] private AudioClip _collideSound;
+    [SerializeField] private AudioSource _effectSoundSource;
+    [SerializeField] private AudioSource _moveSoundSource;
+    [SerializeField] private float _maxSoundSpeed = 20;
+
     [SerializeField] private Vector3 _warningOffset = new Vector3(0, 0.5f, 0.5f);
     private Camera _camera;
     private bool _lost = false;
@@ -26,6 +32,7 @@ public class PlayerController : MonoBehaviour
     RepairActions controls = null;
 
     private Rigidbody _rigidbody;
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -47,6 +54,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        var speed = _rigidbody.velocity.magnitude;
+        if (speed > 1 && !_moveSoundSource.isPlaying)
+        {
+            _moveSoundSource.Play();
+        }
+        else
+        {
+            _moveSoundSource.Pause();
+        }
+
+        _moveSoundSource.volume = Mathf.Clamp01(speed / _maxSoundSpeed);
         if (warningObject && warningObject.activeSelf)
         {
             warningObject.transform.position = transform.position + _warningOffset;
@@ -85,6 +103,7 @@ public class PlayerController : MonoBehaviour
         else if (other.tag == "Warning")
         {
             StartWarning();
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -101,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
     void StartWarning()
     {
+        _effectSoundSource.PlayOneShot(_warningSound);
         warningObject?.SetActive(true);
         Debug.Log("Danger");
     }
@@ -108,5 +128,15 @@ public class PlayerController : MonoBehaviour
     {
         warningObject?.SetActive(false);
         Debug.Log("Danger Clear");
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == "Plane")
+        {
+            return;
+        }
+        Debug.Log($"Collide {other}");
+        _effectSoundSource.PlayOneShot(_collideSound);
     }
 }
