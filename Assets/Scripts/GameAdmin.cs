@@ -10,7 +10,9 @@ public class GameAdmin : MonoBehaviour
     public GameObject inputAdminContainer;
     public GameObject pauseMenuContainer;
     public GameObject startWinLoseMenuContainer;
+    public GameObject scoreBarContainer;
     private InputAdmin _inputAdmin;
+    private ScoreCounterScript scs;
     public Transform ScrollWorldObject;
     public float ScrollSpeed = 1;
 
@@ -49,7 +51,7 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
         setupPauseUI();
-      
+        scs = scoreBarContainer.GetComponent(typeof(ScoreCounterScript)) as ScoreCounterScript;
     }
 
     private void setupPauseUI()
@@ -154,7 +156,9 @@ public class GameAdmin : MonoBehaviour
             if (diff > 0)
             {
                 _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
-            } 
+            }
+
+            scs?.SetScore(_rawScore);
             scoreText.text = $"Score: {_rawScore:0000}";
         }
         else
