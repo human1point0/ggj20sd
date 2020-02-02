@@ -90,7 +90,7 @@ public class GameAdmin : MonoBehaviour
             _state = GameState.PauseMenu;
             _inputAdmin.SetUIMode();
             Time.timeScale = 0.0f;
-            _pauseUI.ShowMenu();
+            _pauseUI.ShowMenu(_inputAdmin.getRepairActions());
             return;
         }
        /* } else

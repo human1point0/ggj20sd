@@ -11,10 +11,10 @@ public class PauseMenuManager : UICanvasManager
         base._admin?.OnResumeGameplay();
     }
 
-    public override void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
+    public override void ShowMenu(RepairActions raActions)
     {
-        base.ShowMenu(state);
-        base._actions.UI.PauseButton.started += ctx =>
+        base.ShowMenu(raActions);
+        raActions.UI.PauseButton.started += ctx =>
         {
             ResumeCallback();
         };
