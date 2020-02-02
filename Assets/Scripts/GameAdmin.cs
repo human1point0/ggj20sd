@@ -13,7 +13,6 @@ public class GameAdmin : MonoBehaviour
     public GameObject startWinLoseMenuContainer;
     public GameObject scoreBarContainer;
     public GameObject cutsceneContainer;
-    public Camera playerCamera;
 
     private InputAdmin _inputAdmin;
     private ScoreCounterScript scs;
