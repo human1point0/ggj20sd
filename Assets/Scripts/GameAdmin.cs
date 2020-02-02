@@ -101,8 +101,9 @@ public class GameAdmin : MonoBehaviour
 
     public void OnResumeGameplay()
     {
-        _state = GameState.InGame;
+       
         print("unpause");
+        _state = GameState.InGame;
         Time.timeScale = 1.0f;
         _inputAdmin.SetGameplayMode();
         _pauseUI.HideMenu();
@@ -174,7 +175,6 @@ public class GameAdmin : MonoBehaviour
             {
                 _left.LaunchPairing();
                 _right.LaunchPairing();
-                Debug.Log("==== PAIRING ===");
                 _pairingScore = 0;
             }
             scs?.SetScore(_rawScore);
@@ -184,7 +184,7 @@ public class GameAdmin : MonoBehaviour
             _pairingScore = 0;
         }
 
-        Debug.Log($"Score: {_rawScore:0000}");
+        //Debug.Log($"Score: {_rawScore:0000}");
     }
 
     public void ping()

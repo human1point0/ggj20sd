@@ -23,9 +23,7 @@ public class ScoreCounterScript : MonoBehaviour
         int ten = ((score % 100) - single) / 10;
         int hundred = ((score % 1000) - ten - single) / 100;
 
-        print(single);
-        print(ten);
-        print(hundred);
+       
         for (int i = 0; i < 10; i++){
             singles[i].SetActive((i <= single - 1));
             tens[i].SetActive((i <= ten - 1));

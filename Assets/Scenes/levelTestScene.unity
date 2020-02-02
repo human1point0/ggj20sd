@@ -2465,6 +2465,8 @@ MonoBehaviour:
   _right: {fileID: 808876759}
   _scoreDistanceMultiplier: 5
   _scoreRateMultiplier: 1
+  _maxPairingDistance: 0.3
+  _pairingTime: 1
   scoreText: {fileID: 191177211}
 --- !u!4 &400541213
 Transform:
@@ -4692,6 +4694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50831318e093b704280b72042117b81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pairingLauncher: {fileID: 0}
   ForceMultiplier: 7
   _isLeft: 0
 --- !u!54 &808876760
@@ -9828,6 +9831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50831318e093b704280b72042117b81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pairingLauncher: {fileID: 0}
   ForceMultiplier: 7
   _isLeft: 1
 --- !u!54 &1754035055
@@ -11883,7 +11887,7 @@ PrefabInstance:
     - target: {fileID: 2649055468818137513, guid: 20c5f70b0d0b26b46aad56557662ecc1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2649055468818137513, guid: 20c5f70b0d0b26b46aad56557662ecc1,
         type: 3}
@@ -11928,7 +11932,7 @@ PrefabInstance:
     - target: {fileID: 2649055468818137513, guid: 20c5f70b0d0b26b46aad56557662ecc1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1019
+      value: 1243
       objectReference: {fileID: 0}
     - target: {fileID: 2649055468818137513, guid: 20c5f70b0d0b26b46aad56557662ecc1,
         type: 3}
