@@ -157,37 +157,32 @@ public class GameAdmin : MonoBehaviour
 
     void UpdateScore()
     {
-        if (_left && _right)
+        var distance = Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
+        var diff = _scoreDistanceMultiplier - distance;
+
+        if (diff > 0)
         {
-            var distance = Mathf.Abs(_left.transform.position.z - _right.transform.position.z);
-            var diff = _scoreDistanceMultiplier - distance;
+            _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
+        }
 
-            if (diff > 0)
+        if (distance <= _maxPairingDistance)
+        {
+            _pairingScore += Time.deltaTime;
+            if (_pairingScore > _pairingTime)
             {
-                _rawScore += diff * Time.deltaTime * _scoreRateMultiplier;
-            }
-
-            if (distance <= _maxPairingDistance)
-            {
-                _pairingScore += Time.deltaTime;
-                if (_pairingScore > _pairingTime)
-                {
-                    _left.LaunchPairing();
-                    _right.LaunchPairing();
-                    Debug.Log("==== PAIRING ===");
-                    _pairingScore = 0;
-                }
-            }
-            else
-            {
+                _left.LaunchPairing();
+                _right.LaunchPairing();
+                Debug.Log("==== PAIRING ===");
                 _pairingScore = 0;
             }
-            scoreText.text = $"Score: {_rawScore:0000}";
         }
         else
         {
-            Debug.Log("Players not connected to GameAdmin");
+            _pairingScore = 0;
         }
+
+        Debug.Log($"Score: {_rawScore:0000}");
+        // scoreText.text = $"Score: {_rawScore:0000}";
     }
 
     public void ping()
