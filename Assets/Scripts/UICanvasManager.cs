@@ -7,13 +7,24 @@ using UnityEngine.EventSystems;
 
 public class UICanvasManager : MonoBehaviour
 {
-    private Canvas CanvasObject; // Assign in inspector
-    private RepairActions _actions;
-    private GameAdmin _admin;
+    protected Renderer CanvasObject; // Assign in inspector
+    protected RepairActions _actions;
+    protected GameAdmin _admin;
     public Button[] Buttons;
+    private GameObject c;
+
+    public void setContaining(GameObject _container)
+    {
+        c = _container;
+    }
+
     private void Awake()
     {
-        CanvasObject = GetComponent<Canvas>();
+        //CanvasObject = GetComponent<Renderer>();
+    }
+
+    private void Start()
+    {
         HideMenu();
     }
 
@@ -27,14 +38,16 @@ public class UICanvasManager : MonoBehaviour
     }
 
 
-    public void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
+    public virtual void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
     {
-        CanvasObject.enabled = true;
+        //CanvasObject.enabled = true;
+        c.SetActive(true);
         Buttons[0].Select();
     }
 
-    public void HideMenu() { 
-        CanvasObject.enabled = false;
+    public void HideMenu() {
+        //CanvasObject.enabled = false;
+        c.SetActive(false);
     }
     public void ping()
     {
