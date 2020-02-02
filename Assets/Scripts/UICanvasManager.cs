@@ -1,84 +1,56 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UICanvasManager : MonoBehaviour
 {
-    private Canvas CanvasObject; // Assign in inspector
-    private RepairActions _actions;
+    protected Renderer CanvasObject; // Assign in inspector
+    protected RepairActions _actions;
+    protected GameAdmin _admin;
+    public Button[] Buttons;
+    private GameObject c;
+
+    public void setContaining(GameObject _container)
+    {
+        c = _container;
+    }
+
     private void Awake()
     {
-        CanvasObject = GetComponent<Canvas>();
+        //CanvasObject = GetComponent<Renderer>();
+    }
+
+    private void Start()
+    {
+        HideMenu();
     }
 
     public void setRepairActionsRef(RepairActions actions)
     {
         _actions = actions;
-        _actions.UI.Navigate.started += ctx => {
-            OnNavigation(_actions.UI.Navigate.ReadValue<Vector2>());
-        };
     }
-
-    private void OnNavigation(Vector2 vec)
+    public void setGameAdmin(GameAdmin admin)
     {
-        if(vec.x > 0) //going right
-        {
-            LeftActionable();
-            return;
-        } else if (vec.x < 0) //going left
-        {
-            RightActionable();
-            return;
-        }
-
-        if (vec.y > 0) //going up
-        {
-            UpActionable();
-        } else //going down
-        {
-            DownActionable();
-        }
+        _admin = admin;
     }
 
-    private void LeftActionable()
+
+    public virtual void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
     {
-        print("UP");
+        //CanvasObject.enabled = true;
+        c.SetActive(true);
+        Buttons[0].Select();
     }
-    private void RightActionable()
+
+    public void HideMenu() {
+        //CanvasObject.enabled = false;
+        c.SetActive(false);
+    }
+    public void ping()
     {
-        print("DOWN");
-    }
-
-    private void UpActionable() {
-        print("UP");
-    }
-    private void DownActionable()
-    {
-        print("DOWN");
-    }
-
-
-    public void ShowMenu(GameAdmin.GameState state = GameAdmin.GameState.StartMenu)
-    {
-        CanvasObject.enabled = true;
-    }
-
-    public void HideMenu()
-    {
-        CanvasObject.enabled = false;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        HideMenu();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        print("ping");
     }
 }

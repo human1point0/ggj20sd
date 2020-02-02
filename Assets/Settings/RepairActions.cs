@@ -41,6 +41,14 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause Game"",
+                    ""type"": ""Button"",
+                    ""id"": ""2854ac03-45a4-49f3-9e5d-59ea9735dc97"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -230,6 +238,28 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""action"": ""Move Right Character"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71ed803c-8d3f-40b8-8467-1778bc7f1a73"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abfed412-0893-4855-9fcb-e3b0a8e8b861"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -322,6 +352,14 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""92c22138-3193-4779-88a8-85f7120cba4d"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PauseButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff886002-3de8-4c0d-8a81-cde95deaf457"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -733,6 +771,28 @@ public class @RepairActions : IInputActionCollection, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd4370e7-baad-4866-b9e7-f3ff6eab2146"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55ae4dd8-ad08-45cc-9603-ff0fcdbfe204"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -805,6 +865,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         m_Player_MoveLeftCharacter = m_Player.FindAction("Move Left Character", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_MoveRightCharacter = m_Player.FindAction("Move Right Character", throwIfNotFound: true);
+        m_Player_PauseGame = m_Player.FindAction("Pause Game", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -818,6 +879,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TrackedDeviceSelect = m_UI.FindAction("TrackedDeviceSelect", throwIfNotFound: true);
+        m_UI_PauseButton = m_UI.FindAction("PauseButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -870,6 +932,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveLeftCharacter;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_MoveRightCharacter;
+    private readonly InputAction m_Player_PauseGame;
     public struct PlayerActions
     {
         private @RepairActions m_Wrapper;
@@ -877,6 +940,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         public InputAction @MoveLeftCharacter => m_Wrapper.m_Player_MoveLeftCharacter;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @MoveRightCharacter => m_Wrapper.m_Player_MoveRightCharacter;
+        public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -895,6 +959,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @MoveRightCharacter.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRightCharacter;
                 @MoveRightCharacter.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRightCharacter;
                 @MoveRightCharacter.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRightCharacter;
+                @PauseGame.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -908,6 +975,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @MoveRightCharacter.started += instance.OnMoveRightCharacter;
                 @MoveRightCharacter.performed += instance.OnMoveRightCharacter;
                 @MoveRightCharacter.canceled += instance.OnMoveRightCharacter;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -927,6 +997,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TrackedDeviceSelect;
+    private readonly InputAction m_UI_PauseButton;
     public struct UIActions
     {
         private @RepairActions m_Wrapper;
@@ -942,6 +1013,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
+        public InputAction @PauseButton => m_Wrapper.m_UI_PauseButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -984,6 +1056,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @TrackedDeviceSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 @TrackedDeviceSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 @TrackedDeviceSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
+                @PauseButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseButton;
+                @PauseButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseButton;
+                @PauseButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseButton;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1021,6 +1096,9 @@ public class @RepairActions : IInputActionCollection, IDisposable
                 @TrackedDeviceSelect.started += instance.OnTrackedDeviceSelect;
                 @TrackedDeviceSelect.performed += instance.OnTrackedDeviceSelect;
                 @TrackedDeviceSelect.canceled += instance.OnTrackedDeviceSelect;
+                @PauseButton.started += instance.OnPauseButton;
+                @PauseButton.performed += instance.OnPauseButton;
+                @PauseButton.canceled += instance.OnPauseButton;
             }
         }
     }
@@ -1075,6 +1153,7 @@ public class @RepairActions : IInputActionCollection, IDisposable
         void OnMoveLeftCharacter(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMoveRightCharacter(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1089,5 +1168,6 @@ public class @RepairActions : IInputActionCollection, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
+        void OnPauseButton(InputAction.CallbackContext context);
     }
 }

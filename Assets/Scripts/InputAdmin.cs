@@ -16,7 +16,6 @@ public class InputAdmin : MonoBehaviour
     
     private void Awake()
     {
-        print("Awakened");
         controls = new RepairActions();
     }
 
@@ -33,15 +32,15 @@ public class InputAdmin : MonoBehaviour
     private void EnablePlayer()
     {
         controls.Player.Enable();
-        _left.SetRepairActions(controls);
-        _right.SetRepairActions(controls);
+        _left?.SetRepairActions(controls);
+        _right?.SetRepairActions(controls);
     }
 
     private void DisablePlayer()
     {
         controls.Player.Disable();
-        _left.SetRepairActions(null);
-        _right.SetRepairActions(null);
+        _left?.SetRepairActions(null);
+        _right?.SetRepairActions(null);
     }
 
     public void SetUIMode()
@@ -58,6 +57,11 @@ public class InputAdmin : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player");
     }
 
+    public RepairActions getRepairActions()
+    {
+        return controls;
+    }
+
     public void setGameAdminReference(GameAdmin admin)
     {
         _admin = admin;
@@ -68,11 +72,22 @@ public class InputAdmin : MonoBehaviour
         _playerInput = playerInput;
     }
 
+    public void leftAxisHandler(Vector2 vec2)
+    {
+        ping();
+    }
+
+    public void rightAxisHandler(Vector2 vec2)
+    {
+        ping();
+    }
+
+    public void Update()
+    {
+    }
+
     public void ping()
     {
         print("ping" + this.GetType().Name);
     }
-    
-    
-    //Vector2 vec = controls.Player.MoveLeftCharacter.ReadValue<Vector2>();
 }
