@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //admins the game state
@@ -101,7 +102,6 @@ public class GameAdmin : MonoBehaviour
 
     public void OnResumeGameplay()
     {
-       
         print("unpause");
         _state = GameState.InGame;
         Time.timeScale = 1.0f;
@@ -185,6 +185,18 @@ public class GameAdmin : MonoBehaviour
         }
 
         //Debug.Log($"Score: {_rawScore:0000}");
+    }
+
+    public void OnReloadPressed()
+    {
+        Debug.Log("Reload");
+        // todo: Start Wait Coroutine
+        Reload();
+    }
+    void Reload()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ping()
