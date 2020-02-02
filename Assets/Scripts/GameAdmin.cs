@@ -173,8 +173,8 @@ public class GameAdmin : MonoBehaviour
             _pairingScore += Time.deltaTime;
             if (_pairingScore > _pairingTime)
             {
-                _left.LaunchPairing();
-                _right.LaunchPairing();
+                // _left.LaunchPairing();
+                // _right.LaunchPairing();
                 _pairingScore = 0;
             }
             scs?.SetScore(_rawScore);
