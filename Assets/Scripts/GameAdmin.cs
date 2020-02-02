@@ -10,7 +10,7 @@ public class GameAdmin : MonoBehaviour
 {
     public GameObject inputAdminContainer;
     public GameObject pauseMenuContainer;
-    public GameObject startWinLoseMenuContainer;
+    public GameObject LoseMenuContainer;
     public GameObject scoreBarContainer;
     public GameObject cutsceneContainer;
 
@@ -38,7 +38,7 @@ public class GameAdmin : MonoBehaviour
 
     private float _pairingScore = 0;
     private float _rawScore = 0;
-
+    private bool hasLost = false;
     public Text scoreText;
     public enum GameState
     {
@@ -62,6 +62,7 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
         setupPauseUI();
+        setupLoseUI();
         scs = scoreBarContainer.GetComponent(typeof(ScoreCounterScript)) as ScoreCounterScript;
     }
 
@@ -71,6 +72,14 @@ public class GameAdmin : MonoBehaviour
         _pauseUI.setGameAdmin(this);
         _pauseUI.setContaining(pauseMenuContainer);
         _pauseUI.setRepairActionsRef(_inputAdmin.getRepairActions());
+    }
+
+    private void setupLoseUI()
+    {
+        _swlUI = LoseMenuContainer.GetComponent(typeof(UICanvasManager)) as UICanvasManager;
+        _swlUI.setGameAdmin(this);
+        _swlUI.setContaining(LoseMenuContainer);
+        _swlUI.setRepairActionsRef(_inputAdmin.getRepairActions());
     }
 
 
@@ -120,6 +129,16 @@ public class GameAdmin : MonoBehaviour
 
     }
 
+    private void ShowLoseMenu()
+    {
+        if (!hasLost) {
+            print("lasssas");
+            _inputAdmin.SetUIMode();
+            _swlUI.ShowMenu(_inputAdmin.getRepairActions());
+            hasLost = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -151,6 +170,7 @@ public class GameAdmin : MonoBehaviour
         {
             _state = GameState.Lose;
             Debug.Log("Lost");
+            ShowLoseMenu();
         }
         return _state == GameState.Lose;
     }
