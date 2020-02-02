@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: ff322a9b071dcd24aa0259b81e9373c9
+guid: daec937ca65778942bbc9410237feff7
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
-  - first:
-      74: 5449073193131188545
-    second: Armature|CubeAction
   - first:
       74: 6007615876195607920
     second: Armature|EarFlapping
@@ -15,30 +12,6 @@ ModelImporter:
   - first:
       74: 7170001326645738040
     second: Armature|EarSquish
-  - first:
-      74: 8767427598950582136
-    second: Armature|EarSquish.001
-  - first:
-      74: 7838798483450627966
-    second: Armature|SphereAction.003
-  - first:
-      74: 840005603809075384
-    second: Armature|SphereAction.004
-  - first:
-      74: -4825216642824821694
-    second: Armature|SphereAction.005
-  - first:
-      74: 8034419855047060383
-    second: Armature|SphereAction.009
-  - first:
-      74: 615210373391578123
-    second: Armature|SphereAction.010
-  - first:
-      74: 2164611421427134540
-    second: Armature|SphereAction.011
-  - first:
-      74: 1243953278026115349
-    second: Armature|SphereAction.012
   externalObjects: {}
   materials:
     materialImportMode: 1
