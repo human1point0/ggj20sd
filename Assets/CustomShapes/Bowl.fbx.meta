@@ -1,79 +1,9 @@
 fileFormatVersion: 2
-guid: 0ded1df3cc0f78c46ae8ba65784057a2
+guid: ded5a97b450b6bd44aec79db3fef779c
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -1422011007694221501
-    second: Armature|ArmatureAction.001
-  - first:
-      74: 5449073193131188545
-    second: Armature|CubeAction
-  - first:
-      74: 783080663221867442
-    second: Armature|CubeAction.001
-  - first:
-      74: 6007615876195607920
-    second: Armature|EarFlapping
-  - first:
-      74: 5460528836863269800
-    second: Armature|EarFlapping.002
-  - first:
-      74: 7170001326645738040
-    second: Armature|EarSquish
-  - first:
-      74: -6788291789069941537
-    second: Armature|SphereAction
-  - first:
-      74: 1599356377470273256
-    second: Armature|SphereAction.001
-  - first:
-      74: -1883150853644995191
-    second: Armature|SphereAction.002
-  - first:
-      74: 7838798483450627966
-    second: Armature|SphereAction.003
-  - first:
-      74: 840005603809075384
-    second: Armature|SphereAction.004
-  - first:
-      74: -4825216642824821694
-    second: Armature|SphereAction.005
-  - first:
-      74: -869978269832519881
-    second: Armature|SphereAction.006
-  - first:
-      74: -8475499637696500558
-    second: Armature|SphereAction.007
-  - first:
-      74: -895535295031493829
-    second: Armature|SphereAction.008
-  - first:
-      74: 8034419855047060383
-    second: Armature|SphereAction.009
-  - first:
-      74: 615210373391578123
-    second: Armature|SphereAction.010
-  - first:
-      74: 2164611421427134540
-    second: Armature|SphereAction.011
-  - first:
-      74: 1243953278026115349
-    second: Armature|SphereAction.012
-  - first:
-      74: -1181173400218167518
-    second: Armature|YinYangAction
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: e17b557bc05a8e846997ad61a98be99d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Face
-    second: {fileID: 2100000, guid: d22cfa2ade5ea3d45bc40792afd1cdd3, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -8,9 +8,14 @@ using UnityEngine.UI;
 public class GameAdmin : MonoBehaviour
 {
     public GameObject inputAdminContainer;
+    public GameObject pauseMenuContainer;
+    public GameObject startWinLoseMenuContainer;
     private InputAdmin _inputAdmin;
     public Transform ScrollWorldObject;
     public float ScrollSpeed = 1;
+
+    private UICanvasManager _pauseUI;
+    private UICanvasManager _swlUI;
 
     [SerializeField] private PlayerController _left;
     [SerializeField] private PlayerController _right; 
@@ -51,7 +56,18 @@ public class GameAdmin : MonoBehaviour
         _inputAdmin = inputAdminContainer.GetComponent(typeof(InputAdmin)) as InputAdmin;
         _inputAdmin.setGameAdminReference(this);
         _inputAdmin.setPlayerInputReference(inputAdminContainer.GetComponent(typeof(PlayerInput)) as PlayerInput);
+        setupPauseUI();      
     }
+
+    private void setupPauseUI()
+    {
+        _pauseUI = pauseMenuContainer.GetComponent(typeof(UICanvasManager)) as UICanvasManager;
+        _pauseUI.setGameAdmin(this);
+        _pauseUI.setContaining(pauseMenuContainer);
+        _pauseUI.setRepairActionsRef(_inputAdmin.getRepairActions());
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +75,36 @@ public class GameAdmin : MonoBehaviour
         _state = GameState.InGame;
         _rawScore = 0;
         _pairingScore = 0;
+        /*_inputAdmin.SetUIMode();
+        _pauseUI.ShowMenu();*/
     }
+
+    public void OnSpawnPauseMenu()
+    {
+        if (_state == GameState.InGame)
+        {
+            print("pause");
+            _state = GameState.PauseMenu;
+            _inputAdmin.SetUIMode();
+            Time.timeScale = 0.0f;
+            _pauseUI.ShowMenu();
+            return;
+        }
+       /* } else
+        {
+            OnResumeGameplay();
+        }     */   
+    }
+
+    public void OnResumeGameplay()
+    {
+        _state = GameState.InGame;
+        print("unpause");
+        Time.timeScale = 1.0f;
+        _inputAdmin.SetGameplayMode();
+        _pauseUI.HideMenu();
+    }
+
 
     // Update is called once per frame
     void Update()
