@@ -11,9 +11,21 @@ public class ScoreCounterScript : MonoBehaviour
 
     private int score = 0;
 
+    private AudioSource _audio;
+
+    private void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
     public void SetScore(float s)
     {
+        var old = score;
         score = Convert.ToInt32(s);
+        if (old != score)
+        {
+            _audio.Play();
+        }
         DisplayScore();
     }
 
