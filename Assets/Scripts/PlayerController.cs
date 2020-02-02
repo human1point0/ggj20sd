@@ -81,8 +81,10 @@ public class PlayerController : MonoBehaviour
 
     public void LaunchPairing()
     {
-        var go = Instantiate(pairingLauncher);
-        go.transform.position = transform.position;
-        
+        if (pairingLauncher)
+        {
+            var go = Instantiate(pairingLauncher);
+            go.transform.position = transform.position;
+        }
     }
 }

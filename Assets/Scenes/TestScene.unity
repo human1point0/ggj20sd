@@ -749,9 +749,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 312040293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47b37ff696a1fa43a01582c6dc34810, type: 3}
+  m_Script: {fileID: 11500000, guid: 75fd338aa33c3bf49929cca634e9ae48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winTransform: {fileID: 268483096}
+  player: {fileID: 222432364}
+  sprites:
+  - {fileID: 21300000, guid: 09a140ee33116d54d8877666a325f023, type: 3}
+  - {fileID: 21300000, guid: 6fe8941cd97e62a4983db2bcdcdb82e5, type: 3}
+  - {fileID: 21300000, guid: a4adfad26f1dd06499dbd8d350dd3141, type: 3}
+  - {fileID: 21300000, guid: 309933fd7334b044c8d5cfb8d640991e, type: 3}
+  - {fileID: 21300000, guid: 674c3ebda01199143b947c51d77e355a, type: 3}
 --- !u!114 &312040296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,9 +859,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 321629497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47b37ff696a1fa43a01582c6dc34810, type: 3}
+  m_Script: {fileID: 11500000, guid: 75fd338aa33c3bf49929cca634e9ae48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winTransform: {fileID: 30704349}
+  player: {fileID: 1476933242}
+  sprites:
+  - {fileID: 21300000, guid: 75a10f10cce1d4c4588bd5507eab78d3, type: 3}
+  - {fileID: 21300000, guid: 3ac194f2216e5f7468215f5d6225918e, type: 3}
+  - {fileID: 21300000, guid: 25f1ce7b929fbdd4fa544a700200fbc2, type: 3}
+  - {fileID: 21300000, guid: 5ee8b061a25d73e488a1a30c9e9bc2c8, type: 3}
+  - {fileID: 21300000, guid: 71a9be1174cdb154487c7a637d8be5da, type: 3}
 --- !u!114 &321629500
 MonoBehaviour:
   m_ObjectHideFlags: 0

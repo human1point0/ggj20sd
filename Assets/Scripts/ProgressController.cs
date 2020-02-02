@@ -18,7 +18,7 @@ public class ProgressController : MonoBehaviour
     private void Awake()
     {
         _slider = GetComponent<Slider>();
-        _handleImage = _slider.GetComponent<Image>();
+        _handleImage = _slider.handleRect.GetComponent<Image>();
     }
 
 
@@ -34,16 +34,12 @@ public class ProgressController : MonoBehaviour
     {
         var current = Mathf.Abs(player.position.z - winTransform.position.z);
         _slider.value = 1 - Mathf.Clamp01(current / distance);
+        UpdateIcon();        
     }
 
     void UpdateIcon()
     {
-        if (sprites.Length < 1)
-        {
-            return;
-        }
-
-        int index = Mathf.Clamp( (int)(int)(sprites.Length * _slider.value), 0, sprites.Length - 1);
+        int index = Mathf.Clamp( (int)(sprites.Length * _slider.value), 0, sprites.Length - 1);
         _handleImage.sprite = sprites[index];
     }
 }
