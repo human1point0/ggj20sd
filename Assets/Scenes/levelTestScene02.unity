@@ -1078,6 +1078,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6922850367160819271, guid: 27e0b4e9020d33d4084caf5795a2b457,
+        type: 3}
+      propertyPath: ForceMultiplier
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6922850367160819277, guid: 27e0b4e9020d33d4084caf5795a2b457,
         type: 3}
       propertyPath: m_Name
@@ -10155,6 +10160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftBunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422860036489291316, guid: 860d7e64d591e014bbd27910bb74807b,
+        type: 3}
+      propertyPath: ForceMultiplier
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2422860036489291318, guid: 860d7e64d591e014bbd27910bb74807b,
         type: 3}
