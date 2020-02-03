@@ -14,6 +14,8 @@ public class GameAdmin : MonoBehaviour
     public GameObject scoreBarContainer;
     public GameObject cutsceneContainer;
 
+    public int nextScene;
+    
     private InputAdmin _inputAdmin;
     private ScoreCounterScript scs;
     public Transform ScrollWorldObject;
@@ -125,8 +127,8 @@ public class GameAdmin : MonoBehaviour
 
         cutsceneContainer.transform.GetChild(0).gameObject.SetActive(true);
         cutsceneContainer.GetComponent<Animation>().Play();
-        yield return new WaitForSeconds(2.0f);
-
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene(nextScene);
     }
 
     private void ShowLoseMenu()
@@ -158,6 +160,8 @@ public class GameAdmin : MonoBehaviour
             Debug.Log("Win");
             if (cutsceneContainer != null)
             {
+                _left.gameObject.SetActive(false);
+                _right.gameObject.SetActive(false);
                 StartCoroutine("StartCutscene");
             }
         }
