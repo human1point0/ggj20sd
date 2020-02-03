@@ -3205,6 +3205,8 @@ MonoBehaviour:
   LoseMenuContainer: {fileID: 1641868237}
   scoreBarContainer: {fileID: 1066783820}
   cutsceneContainer: {fileID: 1628963990}
+  nextScene:
+    m_Handle: 0
   ScrollWorldObject: {fileID: 920608991}
   ScrollSpeed: 1.5
   _left: {fileID: 1601912871}
@@ -6715,8 +6717,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773679641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.19, y: 0.15, z: 60.5}
-  m_LocalScale: {x: 1.378, y: 0.20177, z: 1.4842}
+  m_LocalPosition: {x: 1.47, y: 0.15, z: 60.558}
+  m_LocalScale: {x: 2.83868, y: 0.41564617, z: 3.057452}
   m_Children: []
   m_Father: {fileID: 920608991}
   m_RootOrder: 50
@@ -6741,7 +6743,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773679641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13958,6 +13960,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3749675079909308269, guid: 4aa87e8a1b03d8540a13df47d17f42d5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f4f17c51d0df0b4f8b1c94b6cc9a7c8, type: 2}
     - target: {fileID: 3749675079909308270, guid: 4aa87e8a1b03d8540a13df47d17f42d5,
         type: 3}
       propertyPath: m_Name
@@ -13971,7 +13978,7 @@ PrefabInstance:
     - target: {fileID: 3749675079909308271, guid: 4aa87e8a1b03d8540a13df47d17f42d5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 3749675079909308271, guid: 4aa87e8a1b03d8540a13df47d17f42d5,
         type: 3}
@@ -14196,8 +14203,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642328221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.49, y: 0.15, z: 60.39}
-  m_LocalScale: {x: 1.378, y: 0.20177, z: 1.4842}
+  m_LocalPosition: {x: -1.18, y: 0.15, z: 60.61}
+  m_LocalScale: {x: 2.83868, y: 0.41564617, z: 3.057452}
   m_Children: []
   m_Father: {fileID: 920608991}
   m_RootOrder: 51
@@ -14222,7 +14229,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642328221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
