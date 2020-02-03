@@ -22,7 +22,7 @@ public class SplashScreenScript : MonoBehaviour
     public void StartButtonCallback()
     {
         //load level here
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ExitButtonCallback()
