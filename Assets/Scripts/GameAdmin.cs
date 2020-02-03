@@ -158,6 +158,8 @@ public class GameAdmin : MonoBehaviour
             Debug.Log("Win");
             if (cutsceneContainer != null)
             {
+                _left.gameObject.SetActive(false);
+                _right.gameObject.SetActive(false);
                 StartCoroutine("StartCutscene");
             }
         }
