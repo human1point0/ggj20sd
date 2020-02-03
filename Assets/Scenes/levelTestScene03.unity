@@ -2298,8 +2298,7 @@ MonoBehaviour:
   LoseMenuContainer: {fileID: 490091433}
   scoreBarContainer: {fileID: 1035060321}
   cutsceneContainer: {fileID: 435478829}
-  nextScene:
-    m_Handle: 0
+  nextScene: 3
   ScrollWorldObject: {fileID: 258870940}
   ScrollSpeed: 1.4
   _left: {fileID: 281796059}
