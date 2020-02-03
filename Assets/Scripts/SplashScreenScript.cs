@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SplashScreenScript : MonoBehaviour
@@ -21,6 +22,7 @@ public class SplashScreenScript : MonoBehaviour
     public void StartButtonCallback()
     {
         //load level here
+        SceneManager.LoadScene(0);
     }
 
     public void ExitButtonCallback()
